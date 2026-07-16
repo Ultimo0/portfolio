@@ -7,12 +7,16 @@
     <title>Mon portfolio</title>
 </head>
 <body>
+
+    <!-- ===== HEADER ===== -->
+    <!-- Contient le logo, le menu de navigation, et le bouton hamburger (visible en mobile uniquement) -->
     <header>
 
         <div class="logo">
             <img src="images/logo.jpg" alt="Logo Njaka Rodrigue">
         </div>
 
+        <!-- Menu principal : liens d'ancrage vers chaque section (id) de la page -->
         <nav>
             <ul>
                 <li><a href="#about">À propos</a></li>
@@ -23,6 +27,8 @@
             </ul>
         </nav>
 
+        <!-- Bouton menu mobile : les 3 span deviennent les 3 barres via CSS -->
+        <!-- Le clic est géré par script.js (ajoute/retire la classe .nav-active sur nav) -->
         <button class="burger" id="burgerBtn">
             <span></span>
             <span></span>
@@ -30,8 +36,10 @@
         </button>
     </header>
 
+    <!-- ===== SECTION À PROPOS ===== -->
+    <!-- Photo + présentation, alignées côte à côte grâce à Flexbox (voir #about en CSS) -->
     <section id="about">
-        <img src="images/photo.jpg" alt="Photo de Njaka Rodrigue">
+
         <div class="about-text">
             <h1>NJAKA RODRIGUE CABRELL NSUBONG</h1>
             <p>Étudiant en informatique|Passionné par les technologies du web et la programmation</p>
@@ -58,9 +66,12 @@
                 domaine des nouvelles technologies.
             </p>
         </div>
-        
+
+        <img src="images/photo.jpg" alt="Photo de Njaka Rodrigue">
     </section>
 
+    <!-- ===== SECTION COMPÉTENCES ===== -->
+    <!-- Liste transformée en grille de cartes via CSS Grid (repeat/auto-fit/minmax) -->
     <section id="skills">
 
         <h2>Compétences</h2>
@@ -76,6 +87,9 @@
 
     </section>
 
+    <!-- ===== SECTION FORMATION ===== -->
+    <!-- Chaque diplôme = un bloc .formation-item, stylé en timeline verticale (border-left) -->
+    <!-- Ordre : du plus récent (en cours) au plus ancien -->
     <section id="formation">
 
         <h2>Formation</h2>
@@ -104,13 +118,15 @@
             <span class="date">2020</span>
         </div>
 
-
     </section>
 
+    <!-- ===== SECTION PROJETS ===== -->
+    <!-- Chaque projet = un bloc .project-card avec effet hover (voir CSS : transform + box-shadow) -->
     <section id="projects">
 
         <h2>Projets</h2>
 
+        <!-- Projet 1 : application web avec base de données -->
         <div class="project-card">
             <h3>OrientaInfo</h3>
             <p>Application web qui aide les nouveaux étudiants en informatique à identifier la branche qui leur correspond le mieux, avec les débouchés associés, à travers un questionnaire interactif.</p>
@@ -118,6 +134,7 @@
             <a href="https://github.com/Ultimo0/orientainfo">Voir le projet</a>
         </div>
 
+        <!-- Projet 2 : mini-projet HTML/CSS pur -->
         <div class="project-card">
             <h3>Carte de visite</h3>
             <p>Une carte de présentation personnelle avec un titre principal
@@ -131,6 +148,8 @@
 
     </section>
 
+    <!-- ===== SECTION CONTACT ===== -->
+    <!-- mailto: et tel: déclenchent une action (mail/appel) au lieu de charger une page -->
     <section id="contact">
 
         <h2>Contact</h2>
@@ -142,6 +161,8 @@
         </ul>
 
     </section>
+
+    <!-- Lien vers le JS : en bas du body pour que le DOM soit chargé avant l'exécution -->
     <script src="script.js"></script>
 </body>
 </html>
