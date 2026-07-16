@@ -1,3 +1,6 @@
+/* ===== RESET GLOBAL ===== */
+/* Supprime les marges/paddings par défaut du navigateur (varient d'un navigateur à l'autre) */
+/* box-sizing: border-box = width/height incluent padding + border (évite les calculs de débordement) */
 * {
     margin: 0;
     padding: 0;
@@ -7,9 +10,13 @@
 body {
     font-family: 'Segoe UI', sans-serif;
     color: #222;
+    /* padding-top compense le header en position: fixed (sinon #about est caché dessous) */
     padding-top: 140px;
 }
 
+/* ===== HEADER ===== */
+/* Flex : logo à gauche, nav à droite (space-between), alignés verticalement (align-items) */
+/* position: fixed = reste collé en haut même en scrollant, d'où le padding-top sur body */
 header {
     display: flex;
     justify-content: space-between;
@@ -20,14 +27,16 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1000; /* reste au-dessus du contenu qui défile */
 }
 
+/* height fixe + width: auto = garde les proportions du logo (pas de déformation) */
 .logo img {
     height: 90px;
     width: auto;
 }
 
+/* Menu horizontal, sans puces, espacement régulier via gap */
 nav ul {
     display: flex;
     list-style: none;
@@ -40,6 +49,8 @@ nav a {
     font-weight: 500;
 }
 
+/* ===== SECTION À PROPOS ===== */
+/* Flex met .about-text et img côte à côte, centrés verticalement l'un par rapport à l'autre */
 #about {
     display: flex;
     align-items: center;
@@ -47,6 +58,8 @@ nav a {
     padding: 60px 40px;
 }
 
+/* border-radius: 50% sur width = height donne un cercle parfait */
+/* object-fit: cover recadre la photo sans la déformer si elle n'est pas carrée */
 #about img {
     width: 250px;
     height: 250px;
@@ -60,11 +73,13 @@ nav a {
     color: #1F3B4D;
 }
 
+/* line-height 1.6 = confort de lecture sur les paragraphes longs */
 .about-text p {
     margin-bottom: 15px;
     line-height: 1.6;
 }
 
+/* ===== SECTION COMPÉTENCES ===== */
 #skills {
     padding: 60px 40px;
 }
@@ -75,6 +90,9 @@ nav a {
     margin-bottom: 30px;
 }
 
+/* CSS Grid responsive sans media query : */
+/* auto-fit = calcule automatiquement le nombre de colonnes selon la largeur dispo */
+/* minmax(150px, 1fr) = chaque carte fait au moins 150px, puis se partage l'espace restant */
 #skills ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -92,6 +110,7 @@ nav a {
     color: #1F3B4D;
 }
 
+/* ===== SECTION FORMATION (timeline) ===== */
 #formation {
     padding: 60px 40px;
 }
@@ -102,6 +121,8 @@ nav a {
     margin-bottom: 30px;
 }
 
+/* border-left crée l'effet "ligne verticale" de la timeline à gauche de chaque diplôme */
+/* position: relative prépare le terrain si un jour on ajoute un point décoratif en absolute */
 .formation-item {
     border-left: 3px solid #1F3B4D;
     padding-left: 20px;
@@ -119,6 +140,7 @@ nav a {
     margin: 5px 0;
 }
 
+/* border-radius élevé (20px) sur un élément bas = effet "pilule" pour la date */
 .formation-item .date {
     display: inline-block;
     background-color: #1F3B4D;
@@ -128,6 +150,7 @@ nav a {
     border-radius: 20px;
 }
 
+/* ===== SECTION PROJETS ===== */
 #projects {
     padding: 60px 40px;
 }
@@ -138,6 +161,7 @@ nav a {
     margin-bottom: 30px;
 }
 
+/* transition = anime en douceur (0.3s) tout changement de transform/box-shadow au survol */
 .project-card {
     background-color: #F4F6F7;
     border-radius: 10px;
@@ -146,6 +170,7 @@ nav a {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Effet "carte qui se soulève" au survol : léger déplacement vers le haut + ombre portée */
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -179,12 +204,14 @@ nav a {
     font-size: 0.9rem;
 }
 
+/* Hover distinct du survol de la carte : assombrit juste le bouton */
 .project-card a:hover {
     background-color: #16293A;
 }
 
+/* ===== SECTION CONTACT ===== */
 #contact {
-    padding: 60px 40px 100px;
+    padding: 60px 40px 100px; /* padding-bottom généreux pour aérer la fin de page */
     background-color: #1F3B4D;
 }
 
@@ -194,6 +221,7 @@ nav a {
     margin-bottom: 30px;
 }
 
+/* flex-direction: column = empile les liens verticalement (au lieu de côte à côte) */
 #contact ul {
     list-style: none;
     display: flex;
@@ -212,10 +240,12 @@ nav a {
     text-decoration: underline;
 }
 
+/* ===== BOUTON BURGER (menu mobile) ===== */
+/* Caché par défaut (display: none) : n'apparaît qu'en mobile, voir media query plus bas */
 .burger {
     display: none;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* répartit les 3 span en haut / milieu / bas */
     width: 30px;
     height: 22px;
     background: none;
@@ -224,6 +254,7 @@ nav a {
     padding: 0;
 }
 
+/* Chaque span est vide en HTML : c'est ce style qui en fait une "barre" visible */
 .burger span {
     display: block;
     width: 100%;
@@ -232,9 +263,11 @@ nav a {
     border-radius: 2px;
 }
 
+/* ===== RESPONSIVE (mobile/tablette, écrans ≤ 768px) ===== */
 @media (max-width: 768px) {
     header {
         padding: 15px 20px;
+        /* pas de flex-direction: column ici : logo + burger restent sur la même ligne */
     }
 
     nav ul {
@@ -244,10 +277,12 @@ nav a {
         justify-content: center;
     }
 
+    /* header plus haut en mobile (logo agrandi) => on augmente la compensation */
     body {
         padding-top: 130px;
     }
 
+    /* #about repasse en colonne : photo au-dessus du texte, tout centré */
     #about {
         flex-direction: column;
         text-align: center;
@@ -258,22 +293,25 @@ nav a {
         height: 180px;
     }
 
+    /* Le burger remplace le menu classique en mobile */
     .burger {
-    display: flex;
+        display: flex;
     }
 
     nav {
-    display: none;
+        display: none;
     }
 
+    /* Menu déroulant affiché quand script.js ajoute la classe .nav-active au clic sur le burger */
+    /* position: absolute + top: 100% = apparaît juste sous le header, comme un tiroir */
     nav.nav-active {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #1F3B4D;
-    padding: 20px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #1F3B4D;
+        padding: 20px;
     }
 }
